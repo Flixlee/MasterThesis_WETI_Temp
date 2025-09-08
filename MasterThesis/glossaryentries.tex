@@ -1,0 +1,298 @@
+% list of symbols
+% !TEX spellcheck = en_US
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% config for texstudio
+% makeindex.exe -s %.ist -t %.alg -o %.acr %.acn
+% makeindex.exe -s %.ist -t %.slg -o %.gsi %.gsg
+% makeindex.exe -s %.ist -t %.slg -o %.rsi %.rsg
+% makeindex.exe -s %.ist -t %.slg -o %.ssi %.ssg
+% makeindex.exe -s %.ist -t %.slg -o %.osi %.osg
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% edit all symbols here:
+% Greek Letters
+\newglossaryentry{symb:theta}{
+	name={\ensuremath{\theta}},
+	description={Pitch angle},
+	sort={theta},
+	type=greeksymbols
+}
+\newglossaryentry{symb:alpha}{
+	name={\ensuremath{\alpha}},
+	description={Wind evolution},
+	sort={alpha},
+	type=greeksymbols
+}
+\newglossaryentry{symb:epsilon}{
+	name={\ensuremath{\epsilon}},
+	description={wind speed error between true rotor effective wind speed and lidar estimation},
+	sort={epsilon},
+	type=greeksymbols
+}
+\newglossaryentry{symb:gamma}{
+	name={\ensuremath{\gamma_{\textnormal{RL}}^2}},
+	description={coherence},
+	sort={gamma},
+	type=greeksymbols
+}
+\newglossaryentry{symb:omega}{
+	name={\ensuremath{\omega}},
+	description={angular frequency},
+	sort={omega},
+	type=greeksymbols
+}
+\newglossaryentry{symb:sigma}{
+	name={\ensuremath{\sigma}},
+		description={standard deviation},
+		sort={sigma},
+		type=greeksymbols
+}
+\newglossaryentry{symb:tau}{
+	name={\ensuremath{\tau}},
+		description={feedforward prediction time},
+		sort={tau},
+		type=greeksymbols
+	}
+
+% Roman Letters
+\newglossaryentry{symb:T_Taylor}{
+	name={\ensuremath{T_{\textnormal{Taylor}}}},
+	description={propagation time of wind ﬁeld to rotor},
+	sort={TTaylor},
+	type=romansymbols
+}
+\newglossaryentry{symb:T_scan}{
+	name={\ensuremath{T_{\textnormal{scan}}}},
+	description={duration of a full scan with lidar system},
+	sort={Tscan},
+	type=romansymbols
+}
+\newglossaryentry{symb:T_buffer}{
+	name={\ensuremath{T_{\textnormal{buffer}}}},
+	description={buﬀer time of preview signal},
+	sort={Tbuffer},
+	type=romansymbols
+}
+\newglossaryentry{symb:T}{
+	name={\ensuremath{T}},
+	description={time delay; Period},
+	sort={t},
+	type=romansymbols
+}
+\newglossaryentry{symb:t}{
+	name={\ensuremath{t}},
+	description={time},
+	sort={t},
+	type=romansymbols
+}
+\newglossaryentry{symb:S}{
+	name={\ensuremath{S}},
+	description={cross-spectrum or auto-spectrum},
+	sort={S},
+	type=romansymbols
+}
+\newglossaryentry{symb:j}{
+	name={\ensuremath{j}},
+	description={running variable},
+	sort={j},
+	type=romansymbols
+}
+\newglossaryentry{symb:i}{
+	name={\ensuremath{i}},
+	description={running variable},
+	sort={i},
+	type=romansymbols
+}
+\newglossaryentry{symb:G}{
+	name={\ensuremath{G}},
+	description={transfer function},
+	sort={G},
+	type=romansymbols
+}
+\newglossaryentry{symb:g}{
+	name={\ensuremath{g}},
+	description={gain },
+	sort={g},
+	type=romansymbols
+}
+\newglossaryentry{symb:f_RW}{
+	name={\ensuremath{f_{\textnormal{RW}}}},
+	description={lidar range weighting function},
+	sort={fRW},
+	type=romansymbols
+}
+\newglossaryentry{symb:fs}{
+	name={\ensuremath{f_s}},
+	description={sampling frequency},
+	sort={fs},
+	type=romansymbols
+}
+\newglossaryentry{symb:f}{
+	name={\ensuremath{f}},
+	description={frequency},
+	sort={f},
+	type=romansymbols
+}
+\newglossaryentry{symb:k}{
+	name={\ensuremath{k}},
+	description={wavenumber},
+	sort={k},
+	type=romansymbols
+}
+\newglossaryentry{symb:u}{
+	name={\ensuremath{u}},
+	description={longitudinal wind speed},
+	sort={u},
+	type=romansymbols
+}
+\newglossaryentry{symb:u_mean}{
+	name={\ensuremath{\overline{u}}},
+	description={mean wind speed},
+	sort={umean},
+	type=romansymbols
+}
+\newglossaryentry{symb:v}{
+	name={\ensuremath{v}},
+	description={lateral wind speed},
+	sort={v},
+	type=romansymbols
+}
+\newglossaryentry{symb:v_0}{
+	name={\ensuremath{v_0}},
+	description={rotor eﬀective wind speed},
+	sort={v0},
+	type=romansymbols
+}
+\newglossaryentry{symb:v_0L}{
+	name={\ensuremath{v_{0\textnormal{L}}}},
+	description={lidar estimate of the rotor eﬀective wind speed},
+	sort={v0L},
+	type=romansymbols
+}
+\newglossaryentry{symb:v_0R}{
+	name={\ensuremath{v_{0\textnormal{R}}}},
+	description={Rotor estimate of the rotor eﬀective wind speed},
+	sort={v0R},
+	type=romansymbols
+}
+\newglossaryentry{symb:v_LOS}{
+	name={\ensuremath{v_{\textnormal{LOS}}}},
+	description={line-of-sight wind speed},
+	sort={vLOS},
+	type=romansymbols
+}
+\newglossaryentry{symb:w}{
+	name={\ensuremath{v_w}},
+	description={vertical wind speed},
+	sort={w},
+	type=romansymbols
+}
+\newglossaryentry{symb:x}{
+	name={\ensuremath{x}},
+	description={longitudinal coordinate},
+	sort={x},
+	type=romansymbols
+} 
+\newglossaryentry{symb:y}{
+	name={\ensuremath{y}},
+	description={lateral coordinate},
+	sort={y},
+	type=romansymbols
+}
+\newglossaryentry{symb:z}{
+	name={\ensuremath{z}},
+	description={vertical coordinate},
+	sort={z},
+	type=romansymbols
+}
+
+% Subscripts
+\newglossaryentry{symb:min}{
+	name={\ensuremath{\left(\cdot\right)_{\min}}},
+	description={referring to a minimum value},
+	sort={min},
+	type=subscripts
+}
+\newglossaryentry{symb:max}{
+	name={\ensuremath{\left(\cdot\right)_{\max}}},
+	description={referring to a maximum value},
+	sort={max},
+	type=subscripts
+}
+\newglossaryentry{symb:filtered}{
+	name={\ensuremath{\left(\cdot\right)_{\textnormal{f}}}},
+	description={referring to a ﬁltered signal},
+	sort={ﬁltered},
+	type=subscripts
+}
+\newglossaryentry{symb:buffered}{
+	name={\ensuremath{\left(\cdot\right)_{\textnormal{b}}}},
+	description={referring to a buffered signal},
+	sort={buffered},
+	type=subscripts
+}
+\newglossaryentry{symb:f+b}{
+	name={\ensuremath{\left(\cdot\right)_{\textnormal{fb}}}},
+	description={referring to a ﬁltered and buffered signal},
+	sort={fb},
+	type=subscripts
+}
+
+
+% Operators
+\newglossaryentry{symb:Fourier}{
+	name={\ensuremath{\mathcal{F}\{\cdot\}}},
+	description={Fourier transform},
+	sort={F},
+	type=operators
+}
+\newglossaryentry{symb:compconFourier}{
+	name={\ensuremath{\mathcal{F}^\ast\{\cdot\}}},
+	description={complex confugate of Fourier transform},
+	sort={ccF},
+	type=operators
+}
+\newglossaryentry{symb:est}{
+	name={\ensuremath{\hat{\left(\cdot\right)}}},
+	description={priori estimated value of \ensuremath{\left(\cdot\right)}},
+	sort={est},
+	type=operators
+}
+\newglossaryentry{symb:Transposed}{
+	name={\ensuremath{\left(\cdot\right)^{\textnormal{T}}}},
+	description={transposed},
+	sort={Transposed},
+	type=operators
+}
+\newglossaryentry{symb:estminus}{
+	name={\ensuremath{\hat{\left(\cdot\right)}^{\textnormal{-}}}},
+	description={posteriori estimated value of \ensuremath{\left(\cdot\right)}},
+	sort={estminus},
+	type=operators
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Some acronyms
+\newacronym{AEP}{AEP}{Annual Energy Production}
+
+\newacronym{cpc}{CPC}{Collective Pitch Control}
+
+\newacronym{DEL}{DEL}{Damage Equvivalent Load}
+\newacronym{DLC}{DLC}{Design Load Case}
+\newacronym{DOF}{DOF}{Degree Of Freedom}
+
+\newacronym{FAST}{FAST}{OpenFAST}
+\newacronym{FB}{FB}{Feedback}
+\newacronym{FF}{FF}{Feedforward}
+\newacronym{FFT}{FFT}{Fast Fourier Transform}
+
+\newacronym{lidar}{lidar}{light detection and ranging}
+
+\newacronym{SLOW}{SLOW}{Simplified Low-Order Wind turbine}
+
+\newacronym{WT}{WT}{Wind Turbine}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary entries
+\newglossaryentry{glos:RespF}{name={response file}, description={A file 
+		that allows unattended software installation.}}
+

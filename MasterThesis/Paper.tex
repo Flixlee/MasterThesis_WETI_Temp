@@ -114,6 +114,28 @@
 
     %Abreviations
 \usepackage[printonlyused]{acronym}
+% glossary, abbreviations, symbols
+\usepackage[
+nonumberlist, %do not show page numbers
+acronym]      %generate acronym listing
+%toc]          %show listings as entries in table of contents
+{glossaries}
+%Generate a list of symboles
+\newglossary[slg]{greeksymbols}{gsi}{gsg}{Greek Symbols}
+\newglossary[slg]{romansymbols}{rsi}{rsg}{Roman Symbols}
+\newglossary[slg]{subscripts}{ssi}{ssg}{Subscripts}
+\newglossary[slg]{operators}{osi}{osg}{Operators}
+%Remove the dot at the end of glossary descriptions
+\renewcommand*{\glspostdescription}{}
+
+%Activate glossary commands
+\makeglossaries
+%These commands sort the lists
+%makeindex -s Paper.ist -t Paper.alg -o Paper.acr Paper.acn
+% makeindex.exe -s Paper.ist -t Paper.slg -o Paper.gsi Paper.gsg
+% makeindex.exe -s Paper.ist -t Paper.slg -o Paper.rsi Paper.rsg
+% makeindex.exe -s Paper.ist -t Paper.slg -o Paper.ssi Paper.ssg
+% makeindex.exe -s Paper.ist -t Paper.slg -o Paper.osi Paper.osg
 
 %Document
 \begin{document}
@@ -129,14 +151,14 @@
 \chapter*{Declaration on Thesis}
 \thispagestyle{Preamble}
 
-I herewith formally declare that I, \textcolor{red}{\textbf{NAME OF AUTHOR}}, have written the submitted paper independently. I did not use any outside support except for the quoted literature and other sources mentioned in the paper. I clearly marked and separately listed all of the literature and all of the other sources which I employed when producing this academic work, either literally or in content. This thesis has not been handed in or published before in the same or similar form.
+I herewith formally declare that I, Felix Lehmann, have written the submitted thesis independently. I did not use any outside support except for the quoted literature and other sources mentioned in the thesis. I clearly marked and separately listed all of the literature and all of the other sources which I employed when producing this academic work, either literally or in content. This thesis has not been handed in or published before in the same or similar form.
 
 \vspace{4cm}
 
 \begin{tabular}[h]{l p{2cm} p{7cm}}
 Flensburg, \today &  & \\
 \cline{1-1}\cline{3-3}
-{\small Place, Date}& & {\small \textcolor{red}{\textbf{NAME OF AUTHOR}}}\\
+{\small Place, Date}& & {\small Felix Lehmann}\\
 \end{tabular}
 
 
@@ -164,21 +186,55 @@ Flensburg, \today &  & \\
 \chapter*{List of Abbreviations}
 \thispagestyle{Preamble}
 \addcontentsline{toc}{chapter}{List of Abbreviations}
+\printglossary[type=\acronymtype, style=long]
+%\begin{acronym}[\hspace{3.5cm}]
+%    \acro{BVKW}{Bundesverband Kleinwindanlagen}
+%    \acro{BWE}{Bundesverband WindEnergie}
+%    \acro{BWEA}{British Wind Energy Association}
+%    \acro{CAD}{computer-aided design}
+%    \acro{CFD}{computational fluid dynamics}
+%    \acro{GFRP}{glass-fiber reinforced plastic}
+%    \acro{HAWT}{horizontal axis wind turbine}
+%    \acro{PV}{photovoltaic}
+%    \acro{VAWT}{vertical axis wind turbine}
+%    \acro{WETI}{Wind Energy Technology Institute}
+%    \acro{WTG}{wind turbine generator}
+%    \acro{WWEA}{World Wind Energy Association}
+%\end{acronym}
 
-\begin{acronym}[\hspace{3.5cm}]
-    \acro{BVKW}{Bundesverband Kleinwindanlagen}
-    \acro{BWE}{Bundesverband WindEnergie}
-    \acro{BWEA}{British Wind Energy Association}
-    \acro{CAD}{computer-aided design}
-    \acro{CFD}{computational fluid dynamics}
-    \acro{GFRP}{glass-fiber reinforced plastic}
-    \acro{HAWT}{horizontal axis wind turbine}
-    \acro{PV}{photovoltaic}
-    \acro{VAWT}{vertical axis wind turbine}
-    \acro{WETI}{Wind Energy Technology Institute}
-    \acro{WTG}{wind turbine generator}
-    \acro{WWEA}{World Wind Energy Association}
-\end{acronym}
+		% List of Symbols
+\input{glossaryentries}
+\newpage
+\chapter*{List of Symbols}
+\thispagestyle{Preamble}
+\addcontentsline{toc}{chapter}{List of Symbols}
+\begin{minipage}{\textwidth}
+	\minisec{Greek Letters}
+%	\vspace{-4.5cm}
+	\printglossary[type=greeksymbols,style=long,title={},nogroupskip=true,nonumberlist]
+%	\vspace{1.5cm}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+	\minisec{Roman Letters}
+%	\vspace{-4.5cm}
+	\printglossary[type=romansymbols,style=long,title={},nogroupskip=true,nonumberlist]
+%	\vspace{1.5cm}
+\end{minipage}
+
+\begin{minipage}{\textwidth}	
+	\minisec{Subscripts}
+%	\vspace{-4.5cm}
+	\printglossary[type=subscripts,style=long,title={},nogroupskip=true,nonumberlist]
+%	\vspace{1.5cm}
+\end{minipage}
+
+\begin{minipage}{\textwidth}		
+	\minisec{Operators}
+%	\vspace{-4.5cm}
+	\printglossary[type=operators,style=long,title={},nogroupskip=true,nonumberlist]
+%	\vspace{1.5cm}
+\end{minipage}
 
     %Main text
 \clearpage
