@@ -70,7 +70,13 @@
 \counterwithout{equation}{chapter}
 
     %Bibliography
-\bibliographystyle{unsrt}
+%\bibliographystyle{unsrt}
+\usepackage[
+backend=biber,
+style=numeric, % or ieee, apa, etc.
+sorting=none
+]{biblatex}
+\addbibresource{bibliography.bib}
 
     %Line spacing
 \usepackage{setspace}
@@ -183,10 +189,9 @@ Flensburg, \today &  & \\
 
         %List of abbreviations
 \newpage
-\chapter*{List of Abbreviations}
 \thispagestyle{Preamble}
+\printglossary[type=\acronymtype,title={List of Abbreviations}, style=long]
 \addcontentsline{toc}{chapter}{List of Abbreviations}
-\printglossary[type=\acronymtype, style=long]
 %\begin{acronym}[\hspace{3.5cm}]
 %    \acro{BVKW}{Bundesverband Kleinwindanlagen}
 %    \acro{BWE}{Bundesverband WindEnergie}
@@ -250,7 +255,8 @@ Flensburg, \today &  & \\
 
     %References
 
-\bibliography{bibliography.bib}
+%\bibliography{bibliography.bib}
+\printbibliography
 
     %Appendix
 \newpage
