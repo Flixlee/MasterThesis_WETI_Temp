@@ -1,5 +1,6 @@
 % !TEX spellcheck = en_US
 \chapter{Background} \label{cha:Back}
+This chapter aims to give the necessary background information to follow the content of the thesis. In addition the Field of research is described the outcome of the thesis aims to enhance.
 \section{Wind Turbine Control Systems}\label{sec:ControlSys}
 
 
@@ -22,14 +23,30 @@
 
 
 \section{Lidar Systems}\label{sec:LidarSys}
-
+Lidar systems (\textit{light detection and ranging}) are part of the family of remote sensing technologies like radar and sonar. The first use of a lidar system was for measuring clouds and pollution as described in \cite{Goyer1963}. Since then the \gls{lidar} technology is used in several different fields from meteorology \cite{Goyer1963} to autonomous automotive sensors \cite{EDN2016}. This sections focuses on the \gls{lidar} systems in wind energy and there underlying measurement principles. The following sections are mainly based on \cite{DTUlidar2013} and \cite{Schlipf2015}.
 
 \subsection{Lidar Systems in Wind Energy}\label{subsec:LidarInWind}
+As described in Chapter \ref{cha:INT} mentioned, the driving force of a \gls{WT} is the wind speed. The \gls{lidar} system is used in wind energy to measure such. The commonly used systems can be characterized by: detection, waveband, waveform and position relative to the flow:
 
+\begin{itemize}
+	\item Direct or coherent detection: Systems that use coherent detection determine a Doppler shift by comparing the frequency of the transmitted light with the backscattered light frequency. This frequency difference is then converted into a wind speed. In contrast, systems with direct detection apply cross-correlation of signals backscattered from multiple measurement points to directly calculate wind speed and direction.
+	
+	\item Continuous or pulsed waveform: Pulsed lidar systems send out short laser pulses and can measure multiple distances at once by linking changes in the backscattered signal over time to spatial changes, taking into account the constant speed of light. These measured distances are often referred to as range gates. Continuous wave systems, however, must adjust the optical focus to measure at different distances.
+	
+	\item Ultra-violet or infra-red waveband: Lidar systems use different laser sources that produce either infrared light, which bounces off particles like dust, salt, or water droplets suspended in the air, or ultraviolet light, which is scattered by the air molecules themselves.
+	
+	\item Nacelle-based, ground-based or spinner-based systems: There are three main locations to install a \gls{lidar} system. Depending on that the systems have different data processing and measurement positions.
+\end{itemize}
+
+The \gls{lidar} system used in this thesis is the Molas NL 200 developed by Nanjing Movelaser \cite{MolasNL200}. The system uses coherent detection in the infra-red waveband by emitting laser pulses and is based on top of the nacelle.
 
 \subsection{Measurement Concept of Nacelle mounted Doppler shift Lidar Systems}\label{subsec:LidarInWindConcept}
 
+A lidar system which uses coherent detection is applying the Doppler effect. The originally send light is compared with the backscattered signal to determine the frequency shift. (figure mirror cloud) The basic processing with coherent detection can be described as following: Part of the laser beam is separated from the emitted light with the frequency \gls{symb:fL} by a beam-splitter. The separated light from the source is than superimposed at a second beam-splitter with the backscattered light with the frequency $\gls{symb:fL} + \gls{symb:fD}$. The superimposed signal is processed and the detector is able to determine the frequency shift \gls{symb:fD}. 
+Signal processing is often done by splitting the detector-signal into several blocks (figure FFT, need to add). An \gls{FFT} is applied to each block in order to obtain the individual spectrum. Depending on the used waveform the spectra blocks are averaged. For a continuous wave system the range is fixed and the blocks can be averaged continuously. For a pulsed system the blocks need to be averaged for the same range gate over different pulses. In the end the averaged spectrum is evaluated by an peak detection algorithm in order to obtain the frequency shift \gls{symb:fD}. Usually a metric to evaluate the quality of the signal is needed, this can be the \gls{cnr}.
 
+The frequency shift can be translated into a line-of-sight wind speed \gls{symb:v_LOS} with the speed of light \gls{symb:c} and the wavelength \gls{symb:lambda_L} of the laser.
+\[ \gls{symb:v_LOS} =  \frac{c f_\textnormal{D}}{2f_\textnormal{L}} = \frac{\lambda_\textnormal{L} f_\textnormal{D}}{2}\]
 
 
 \section{Adaptive Data Driven Algorithms}\label{sec:AlgBasics}
