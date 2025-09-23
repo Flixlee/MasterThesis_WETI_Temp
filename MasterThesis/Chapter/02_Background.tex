@@ -37,16 +37,61 @@ As described in Chapter \ref{cha:INT} mentioned, the driving force of a \gls{WT}
 	
 	\item Nacelle-based, ground-based or spinner-based systems: There are three main locations to install a \gls{lidar} system. Depending on that the systems have different data processing and measurement positions.
 \end{itemize}
-
+%
 The \gls{lidar} system used in this thesis is the Molas NL 200 developed by Nanjing Movelaser \cite{MolasNL200}. The system uses coherent detection in the infra-red waveband by emitting laser pulses and is based on top of the nacelle.
 
 \subsection{Measurement Concept of Nacelle mounted Doppler shift Lidar Systems}\label{subsec:LidarInWindConcept}
+Due to the Doppler effect the backscattered light signal has a different frequency then the emitted light signal. The fundamental measurement principle of coherent detection is now to detect this frequency shift by comparing the backscattered signal to the emitted signal. To achieve this, part of the emitted light laser beam with the frequency \gls{symb:fL} is separated by a beam-splitter. This is than superimposed at a signal from another beam-splitter which contains the backscattered light respectively. The backscattered signal has the frequency $\gls{symb:fL} + \gls{symb:fD}$. Hence the source signal with frequency \gls{symb:fL} is superimposed the detector is able to detect the frequency shift \gls{symb:fD}.     
 
-A lidar system which uses coherent detection is applying the Doppler effect. The originally send light is compared with the backscattered signal to determine the frequency shift. (figure mirror cloud) The basic processing with coherent detection can be described as following: Part of the laser beam is separated from the emitted light with the frequency \gls{symb:fL} by a beam-splitter. The separated light from the source is than superimposed at a second beam-splitter with the backscattered light with the frequency $\gls{symb:fL} + \gls{symb:fD}$. The superimposed signal is processed and the detector is able to determine the frequency shift \gls{symb:fD}. 
-Signal processing is often done by splitting the detector-signal into several blocks (figure FFT, need to add). An \gls{FFT} is applied to each block in order to obtain the individual spectrum. Depending on the used waveform the spectra blocks are averaged. For a continuous wave system the range is fixed and the blocks can be averaged continuously. For a pulsed system the blocks need to be averaged for the same range gate over different pulses. In the end the averaged spectrum is evaluated by an peak detection algorithm in order to obtain the frequency shift \gls{symb:fD}. Usually a metric to evaluate the quality of the signal is needed, this can be the \gls{cnr}.
+\noindent To process this signal into line of sight wind speed the detector signal is splitted into blocks. An \gls{FFT} is applied on each block. The resulting spectrum is then averaged over several blocks, this depends on the waveform. Continuous wave systems have a fixed range therefore the blocks can be averaged continuously. Pulsed systems measure at different range gates. The averaging need to be applied on different pulses at the same range gate. The process of averaging is necessary to ensure a clear distance between the measurement peak and noise. The metric to estimate the quality of the measurement is usually the \gls{cnr}. To finally get the detector output, the frequency shift \gls{symb:fD}, an peak detection algorithm is used.  
 
-The frequency shift can be translated into a line-of-sight wind speed \gls{symb:v_LOS} with the speed of light \gls{symb:c} and the wavelength \gls{symb:lambda_L} of the laser.
-\[ \gls{symb:v_LOS} =  \frac{c f_\textnormal{D}}{2f_\textnormal{L}} = \frac{\lambda_\textnormal{L} f_\textnormal{D}}{2}\]
+\noindent Hence we want to measure the wind speed and not a frequency the frequency shift needs to be translated. The result is then the wind speed in the trajectory of the laser beam the so called line-of-sight wind speed \gls{symb:v_LOS}. This is done with the wavelength \gls{symb:lambda_L} of the emitted laser light, the speed of light \gls{symb:c} and the frequency shift \gls{symb:fD} shown in equation \ref{eq:vLOSlidar}.
+\begin{equation}
+	\gls{symb:v_LOS} =  \frac{c f_\textnormal{D}}{2f_\textnormal{L}} = \frac{\lambda_\textnormal{L} f_\textnormal{D}}{2}
+	\label{eq:vLOSlidar}	
+\end{equation} 
 
+\section{Wind Field Reconstruction}\label{sec:WindFieldReconstruction}
+As described in the previous section \ref{subsec:LidarInWindConcept} the output of a \gls{lidar} system is a wind speed in line-of-sight. This has by its nature one main benefit and one main drawback that makes the \gls{WFR} necessary:
+\begin{enumerate}
+	\item The line-of-sight measurement is unable to measure a three-dimensional wind vector \cite{Schlipf2015}.
+	\item The line-of-sight measurement is already measuring a probe volume instead of a point \cite{Schlipf2015}. Therefore it contains information averaged over space and time. 
+\end{enumerate}
+In the following Chapter !!!REF!!! in section !!!REF!!! it is explained in detail how a three-dimensional wind field is modeled and the effect it has on a \gls{WT}. To understand the importance of \gls{WFR} the most important step to understand is, that $\gls{symb:v_LOS} \neq \gls{symb:v_0}$. Where \gls{symb:v_0} is the \gls{REWS}, represented by one scalar that accounts for all three-dimensional wind vectors effecting the \gls{WT}. The \gls{WFR} is used to align the line-of-sight measurement in such a way that it is comparable to the \gls{REWS}. 
+This chapter contains methods to reconstruct the measurement of a nacelle mounted \gls{lidar} into a \gls{REWS}. First the Static approach in \ref{subsec:StaticWFR} and a brief outlook on dynamic \gls{WFR} in section \ref{subsec:DynamicWFR}. This chapter is mainly based on \cite{Schlipf2011} and \cite{Schlipf2012}.
 
+\subsection{Static Wind Field Reconstruction for nacelle lidar systems}\label{subsec:StaticWFR}
+Es mentioned above the drawback of a \gls{lidar} measurement is, that it is not a three-dimensional vector. To get achieve this three \gls{lidar} systems are needed as in the Musketeer experiment \cite{Mikkelsen2008}. \cite{Schlipf2011} proposes that it can still be done by the following assumptions of \gls{WFR}:
+\begin{enumerate}
+	\item The wind only contains the longitudinal component \gls{symb:u}.
+	\item The flow is homogeneous and the vertical wind component \gls{symb:z} is not contained in the wind field. 
+\end{enumerate}
+The first assumption is based on the idea that the \gls{WT} is perfectly align with the inflow wind in respect to the wind direction. Leading to the assumption of vertical shear if a two beam \gls{lidar} measures different \gls{symb:v_LOS} at the beams. The second assumption is used to detect a change in wind direction. Normally used if the \gls{lidar} is used for yaw-control. Only one or the other assumption of \gls{WFR} can be applied.
+
+\noindent To reconstruct a \gls{REWS} from a line-of-sight measurement of a nacelle \gls{lidar} system one of the two above mentioned methods is selected. As described in !!!REF!!! this thesis aims to get e better estimation of the wind speed. The \gls{WFR} used for speed control according to \cite{Schlipf2011} is the first one. This leads to an estimated line-of-sight wind speed for one example laser beam as described in equation \ref{eq:simpleWFR}. Equation \ref{eq:simpleWFR} represents the simplified result presented in \cite{Schlipf2015}. Where $i$ refers to a beam corresponding to a specific measurement point and \gls{symb:thetaCL} the angle between the trajectory of the nacelle and the laser beam. 
+\begin{equation}
+	\gls{symb:v_LOS}_{,i} =  \hat{u}_i \cdot \cos(\gls{symb:thetaCL})
+	\label{eq:simpleWFR}	
+\end{equation}
+Now the longitudinal wind speed at every beam focus point can be estimated by inserting the corresponding \gls{lidar} measurement \gls{symb:v_LOS} in equation \ref{eq:simpleWFR}. To get a value comparable to the \gls{REWS}, \gls{symb:v_0L} needs to be computed. This is done by averaging over all beams see equation \ref{eq:v_0L}. 
+\begin{equation}
+	\gls{symb:v_0L} =  \frac{1}{n} \sum_{i=1}^{n} \hat{u}_i
+	\label{eq:v_0L}	
+\end{equation}  
+Where $n$ is the number of beams. 
+
+\noindent This static \gls{WFR} is already providing a value that is comparable to a \gls{REWS}. The only drawback is, that it is related to a different point in space than the \gls{WT} rotor. Therefore the two values at the same point in time $t$ are not directly comparable: $\gls{symb:v_0L}(t) \neq \gls{symb:v_0}(t)$. This issue is tackled in the next section \ref{subsec:DynamicWFR}.    
+
+\subsection{Dynamic Wind Field Reconstruction}\label{subsec:DynamicWFR}
+As the word dynamic indicates the change to the static \gls{WFR} is, that the temporal relationship between the measurement and the effect on the \gls{WT} rotor itself is included. The basic concept behind this is Taylor’s Frozen Turbulence Hypothesis \cite{Taylor1938}. Which main take away is that the wind field is traveling with its mean wind speed \gls{symb:u_mean} through space. This leads to a time a wind field at a specific point upstream of the \gls{WT} needs until it reaches the rotor. Setting this point in space to the measurement point of the \gls{lidar} at distance \gls{symb:xL} leading to a travel time after Taylor of equation \ref{eq:T_taylor}
+\begin{equation}
+	\gls{symb:T_Taylor} =  \frac{\gls{symb:xL}}{\gls{symb:u_mean}} 
+	\label{eq:T_taylor}	
+\end{equation}
+If the \gls{lidar} signal is shifted forward in time by \gls{symb:T_Taylor} the two values of $\gls{symb:v_0}(t)$ and $\gls{symb:v_0L}(t+\gls{symb:T_Taylor})$ are no directly comparable. 
+
+\noindent To align the \gls{symb:v_0L} with the \gls{symb:v_0} as close as possible in phase as well es magnitude \cite{Schlipf2011} is already proposing the method of filtering and buffering. In addition shear and other effects can be included into the dynamic \gls{WFR}. For this thesis is only focusing on the dynamic step of the \gls{WFR}.
+
+   
 \section{Adaptive Data Driven Algorithms}\label{sec:AlgBasics}
+Referring to \cite{Zaknich2005} an adaptive algorithm is an algorithm that can change its behavior during runtime. This change is driven by data and evaluated via a cost function. All developed algorithm need to be able to change there properties and this based on data to be called adaptive data driven algorithms. 
